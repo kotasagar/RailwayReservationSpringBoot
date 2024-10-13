@@ -48,14 +48,12 @@ Create a MySQL database and configure the connection settings in the application
 ## Usage
 Run the Application:
 
-For Python:
-bash
+For Java:
+Run Project as SpringBootApp in Spring Tool Suite
 
-python app.py
 For Node.js:
-bash
-
 node server.js
+
 Access the application at http://localhost:8080 (or the port your application is running on).
 
 ## API Endpoints
@@ -82,12 +80,12 @@ Retrieves booking details (Authorization token required).
 ## Contributing
 Contributions are welcome! Please follow these steps:
 
-Fork the repository.
-Create a new branch (git checkout -b feature-branch).
-Make your changes.
-Commit your changes (git commit -m 'Add new feature').
-Push to the branch (git push origin feature-branch).
-Create a new Pull Request.
+1.Fork the repository
+2.Create a new branch (git checkout -b feature-branch)
+3.Make your changes
+4.Commit your changes (git commit -m 'Add new feature')
+5.Push to the branch (git push origin feature-branch)
+6.Create a new Pull Request
 
 
 ## Contact
