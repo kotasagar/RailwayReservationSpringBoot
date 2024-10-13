@@ -34,28 +34,28 @@ A comprehensive railway management system designed to handle train availability,
 
 Follow these steps to set up the project locally:
 
-1. Clone the repository:
+1. Clone the repository:<br/>
    ```bash
    git clone https://github.com/kotasagar/RailwayReservationSpringBoot/railway-management-system.git
    cd railway-management-system
 Install dependencies:
 
-For Python:
+For Python:<br/>
 pip install -r requirements.txt
 
-For Node.js:
+For Node.js:<br/>
 npm install
 
-Set up the database:
+Set up the database:<br/>
 Create a MySQL database and configure the connection settings in the application.
 
 ## Usage
 Run the Application:
 
-For Java:
+For Java:<br/>
 Run Project as SpringBootApp in Spring Tool Suite
 
-For Node.js:
+For Node.js:<br/>
 node server.js
 
 Access the application at http://localhost:8080 (or the port your application is running on).
