@@ -2,6 +2,8 @@ package com.railway.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,5 +23,11 @@ public class BookingController {
     public ResponseEntity<?> bookSeat(@RequestParam Long trainId, @RequestParam int seats, @AuthenticationPrincipal User user) {
         Booking booking = bookingService.bookSeat(trainId, user, seats);
         return ResponseEntity.ok(booking);
+    }
+    
+    @GetMapping
+    public List<Booking> getBookingDetails()
+    {
+    	return bookingService.getBookingDetails();
     }
 }

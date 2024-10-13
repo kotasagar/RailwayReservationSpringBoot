@@ -7,15 +7,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping()
 public class UserController {
     @Autowired
     private UserService userService;
+    
+    
+    
+    //seat availability
 
-    @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody User user) {
-        return ResponseEntity.ok(userService.register(user));
-    }
+//    @PostMapping("/register")
+ //   public ResponseEntity<User> register(@RequestBody User user) {
+ //       return ResponseEntity.ok(userService.register(user));
+ //   }
 
     // Additional methods for login and seat booking can be added here.
 }
