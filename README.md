@@ -61,6 +61,7 @@ node server.js
 Access the application at http://localhost:8080 (or the port your application is running on).
 
 ## API Endpoints
+
 - **User Registration**
 POST /api/register
 Registers a new user.
