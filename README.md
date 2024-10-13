@@ -1,166 +1,102 @@
-# RailwayManagementSystem-SpringBoot
+# Railway Management System
 
-### About:
-This project is about the Train-Ticket-Reservation-System which is used to view Train Schedule, search trains, Seat availability, Train timings. We can also enquire about fare of different trains. We can get information about train between two stations. We can book seats online. This provides a safe and secure seat reservation system. 
+A comprehensive railway management system designed to handle train availability, seat booking, and user management, similar to IRCTC. This application allows users to check train schedules, view seat availability, and book seats, all while ensuring real-time operations and handling race conditions effectively.
 
-### Online Train Information and Reservation
+## Table of Contents
 
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-<span style="color:blue">**The Admin have the following access to this website:-**</span>
-- Login
-- Add Trains
-- Update Trains
-- Remove  or cancle Trains
-- View Trains
-- Profile Edit
-- Logout
+## Features
 
-<span style="color:blue">**The Users have the following Access:-**</span>
-- Register
-- Login
-- View Trains
-- Check Seat Availability
-- Search Trains
-- Train Avaiablity and Fare Between Stations
-- Books Tickets
-- View Booking History
-- View Profile
-- Update Profile
-- Change Password
-- Logout
+- **User Registration:** Register new users with basic details.
+- **User Login:** Secure login functionality for users.
+- **Admin Functions:** Admins can add new trains and update seat availability.
+- **Train Availability:** Users can check for trains between two stations and view seat availability.
+- **Seat Booking:** Users can book seats if available, with proper handling of simultaneous bookings.
+- **Booking Details:** Users can retrieve their booking details.
 
-### Technologies used:-
-Back-End Development
-- Java [J2EE]
-- SpringBoot
-- JDBC
-- Servlet
-- Oracle ( SQL )
+## Tech Stack
 
-### ==== Software And Tools Required ======
-- : Git [https://www.youtube.com/watch?v=gv7VPQ4LZ7g]
-- : Java JDK 8+ [https://www.youtube.com/watch?v=O9PWH9SeTTE]
-- : Eclipse EE [https://www.youtube.com/watch?v=8aDsEV7txXE]
-- : Apache Maven [https://www.youtube.com/watch?v=jd2zx3dLjuw]
-- : Tomcat v8.0+ [https://youtu.be/mLFPodZO8Iw?t=903]
-- : Oracle (SQL) / SQL PLUS [https://www.youtube.com/watch?v=ZYOqykEDSqU]
-- : Oracle SQL Developer [https://www.youtube.com/watch?v=2a1JKIGVtd0]
+- **Web Framework:** Java (Spring Boot)
+- **Database:** MySQL
 
-### ========== Dummy Database Initialization ===========
+## Installation
 
-STEP 1: Open SQL Plus OR SQL Developer
+Follow these steps to set up the project locally:
 
-STEP 2: Login and connect to database using administrator username and password
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/railway-management-system.git
+   cd railway-management-system
+Install dependencies:
 
-STEP 3 :Execute the below command first to create a new user:
+For Python:
+bash
+Copy code
+pip install -r requirements.txt
+For Node.js:
+bash
+Copy code
+npm install
+Set up the database:
 
-```SQL
+Create a MySQL or PostgreSQL database and configure the connection settings in the application.
+Usage
+Run the Application:
 
-ALTER SESSION SET "_ORACLE_SCRIPT"=TRUE;  
-CREATE USER RESERVATION IDENTIFIED BY MANAGER;
-GRANT DBA TO RESERVATION;
-COMMIT;
+For Python:
+bash
 
-```
-NOTE: If the above command fails for alter session issues, try to remove first line and then execute it.
+python app.py
+For Node.js:
+bash
 
-STEP 4: Now execute the below sql query in same terminal
+node server.js
+Access the application at http://localhost:5000 (or the port your application is running on).
 
-```SQL
+API Endpoints
+User Registration
+POST /api/register
+Registers a new user.
+User Login
+POST /api/login
+Authenticates a user and returns an authorization token.
+Add a New Train (Admin)
+POST /api/admin/train
+Creates a new train with source and destination (API key required).
+Get Seat Availability
+GET /api/seats?source={source}&destination={destination}
+Fetches trains and seat availability for a given route.
+Book a Seat
+POST /api/book
+Books a seat on a specified train (Authorization token required).
+Get Specific Booking Details
+GET /api/booking/{bookingId}
+Retrieves booking details (Authorization token required).
+Contributing
+Contributions are welcome! Please follow these steps:
 
-CONNECT RESERVATION/MANAGER;
-CREATE TABLE "RESERVATION"."CUSTOMER" 
-(	
-"MAILID" VARCHAR2(40) PRIMARY KEY, 
-"PWORD" VARCHAR2(20) NOT NULL, 
-"FNAME" VARCHAR2(20) NOT NULL, 
-"LNAME" VARCHAR2(20), 
-"ADDR" VARCHAR2(100), 
-"PHNO" NUMBER(12) NOT NULL
-);
-
-CREATE TABLE "RESERVATION"."ADMIN"
-(	
-"MAILID" VARCHAR2(40) PRIMARY KEY, 
-"PWORD" VARCHAR2(20) NOT NULL, 
-"FNAME" VARCHAR2(20) NOT NULL, 
-"LNAME" VARCHAR2(20), 
-"ADDR" VARCHAR2(100), 
-"PHNO" NUMBER(12) NOT NULL
-);
-
-
-CREATE TABLE "RESERVATION"."TRAIN" 
-(	
-"TR_NO" NUMBER(10) PRIMARY KEY, 
-"TR_NAME" VARCHAR2(70) NOT NULL, 
-"FROM_STN" VARCHAR2(20) NOT NULL, 
-"TO_STN" VARCHAR2(20) NOT NULL, 
-"SEATS" NUMBER(4) NOT NULL, 
-"FARE" NUMBER(6,2) NOT NULL 
-);
-
-CREATE TABLE "RESERVATION"."HISTORY" 
-(	
-"TRANSID" VARCHAR2(36) PRIMARY KEY, 
-"MAILID" VARCHAR2(40) REFERENCES "RESERVATION"."CUSTOMER"(MAILID), 
-"TR_NO" NUMBER(10),
-"DATE" DATE,
-"FROM_STN" VARCHAR2(20) NOT NULL, 
-"TO_STN" VARCHAR2(20) NOT NULL, 
-"SEATS" NUMBER(3) NOT NULL, 
-"AMOUNT" NUMBER(8,2) NOT NULL
-);
-
-COMMIT;
-
-INSERT INTO RESERVATION.ADMIN VALUES('admin@demo.com','admin','System','Admin','Demo Address 123 colony','9874561230');
-INSERT INTO RESERVATION.CUSTOMER VALUES('sagar@demo.com','sagar','Sagar','Raj','Kolkata, West Bengal',954745222);
-
-INSERT INTO RESERVATION.TRAIN VALUES(10001,'JODHPUR EXP','HOWRAH','JODHPUR', 152, 490.50);
-INSERT INTO RESERVATION.TRAIN VALUES(10002,'YAMUNA EXP','GAYA','DELHI', 52, 550.50);
-INSERT INTO RESERVATION.TRAIN VALUES(10003,'NILANCHAL EXP','GAYA','HOWRAH', 92, 451);
-INSERT INTO RESERVATION.TRAIN VALUES(10004,'JAN SATABDI EXP','RANCHI','PATNA', 182, 550);
-INSERT INTO RESERVATION.TRAIN VALUES(10005,'GANGE EXP','MUMBAI','KERALA', 12, 945);
-INSERT INTO RESERVATION.TRAIN VALUES(10006,'GARIB RATH EXP','PATNA','DELHI', 1, 1450.75);
-
-INSERT INTO RESERVATION.HISTORY VALUES('BBC374-NSDF-4673','sagar@demo.com',10001,TO_DATE('02-FEB-2024'), 'HOWRAH', 'JODHPUR', 2, 981);
-INSERT INTO RESERVATION.HISTORY VALUES('BBC375-NSDF-4675','sagar@demo.com',10004,TO_DATE('12-JAN-2024'), 'RANCHI', 'PATNA', 1, 550);
-INSERT INTO RESERVATION.HISTORY VALUES('BBC373-NSDF-4674','sagar@demo.com',10006,TO_DATE('22-JULY-2024'), 'PATNA', 'DELHI', 3, 4352.25);
-
-COMMIT;
-```
-STEP 5: Now Execute the below query one by one to check if the tables are created successfully
-```SQL
-SELECT * FROM ADMIN;
-SELECT * FROM CUSTOMER;
-SELECT * FROM TRAIN;
-SELECT * FROM HISTORY;
-
-```
-Note: If any of the above commands fails, please try to fix it first and then proceed to next step
-	
-### ====== Importing and Running the Project Through Eclipse EE ===========
-Step 0: Open Eclipse Enterprise Edition. [Install if not available](https://www.youtube.com/watch?v=8aDsEV7txXE)
-
-Step 1: Click On File > Import > Git > Projects From Git > Clone Uri  > Paste The Repository 
-Step 2.A: Right Click on Project > Run as > Maven Build > In the goals field enter "clean install" > apply > run
-
-Step 2.B: Right Click On Project > Build Path > Configure Build Path > Libraries > Remove And Update Any Libraries With Red Mark > Finish
-
-Step 3: [Only if Tomcat v8.0 is not Configured in Eclipse]: Right Click On Project > Run As > Run On Server > Select Tomcat v8.0 > (Select Tomcat V8.0 Installation Location If Asked) Next > Add <project-name> > Finish
-
-Step 4: In The Server Tab > Double Click On Tomcat Server > Ports  > Change The Port Number For Http/1.1 To 8083 > Close And Save
-
-Step 5: Right Click On Project > Run As > Run On Server > Select Tomcat V8.0 > Next > Add All> Done
-
-Step 6: Check Running The Site At  <a Href="Http://localhost:8083/trainbook/">http://localhost:8083/trainbook/</a>
-
-Step 7: Default Username And Password For Admin Is "admin@demo.com" And "admin"
-
-Step 8: Default Username And Password For User Is "sagar@demo.com" And "sagar"
+Fork the repository.
+Create a new branch (git checkout -b feature-branch).
+Make your changes.
+Commit your changes (git commit -m 'Add new feature').
+Push to the branch (git push origin feature-branch).
+Create a new Pull Request.
 
 
+Contact
+Your Name - sagarkota008@gmail.com
 
+Project Link: GitHub Repo
 
-#### "Suggestions and project Improvement are Invited"
+vbnet
+Copy code
+
+Feel free to customize it further to match your project's specific details and style!
