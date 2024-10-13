@@ -10,7 +10,6 @@ A comprehensive railway management system designed to handle train availability,
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 
 ## Features
@@ -33,22 +32,20 @@ Follow these steps to set up the project locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/railway-management-system.git
+   git clone https://github.com/kotasagar/RailwayReservationSpringBoot/railway-management-system.git
    cd railway-management-system
 Install dependencies:
 
 For Python:
-bash
-Copy code
 pip install -r requirements.txt
-For Node.js:
-bash
-Copy code
-npm install
-Set up the database:
 
-Create a MySQL or PostgreSQL database and configure the connection settings in the application.
-Usage
+For Node.js:
+npm install
+
+Set up the database:
+Create a MySQL database and configure the connection settings in the application.
+
+## Usage
 Run the Application:
 
 For Python:
@@ -59,28 +56,30 @@ For Node.js:
 bash
 
 node server.js
-Access the application at http://localhost:5000 (or the port your application is running on).
+Access the application at http://localhost:8080 (or the port your application is running on).
 
-API Endpoints
-User Registration
+## API Endpoints
+- **User Registration**
 POST /api/register
 Registers a new user.
-User Login
+- **User Login**
 POST /api/login
 Authenticates a user and returns an authorization token.
-Add a New Train (Admin)
+- **Add a New Train (Admin)**
 POST /api/admin/train
 Creates a new train with source and destination (API key required).
-Get Seat Availability
+- **Get Seat Availability**
 GET /api/seats?source={source}&destination={destination}
 Fetches trains and seat availability for a given route.
-Book a Seat
+- **Book a Seat**
 POST /api/book
 Books a seat on a specified train (Authorization token required).
-Get Specific Booking Details
+- **Get Specific Booking Details**
 GET /api/booking/{bookingId}
 Retrieves booking details (Authorization token required).
-Contributing
+
+
+## Contributing
 Contributions are welcome! Please follow these steps:
 
 Fork the repository.
@@ -91,12 +90,10 @@ Push to the branch (git push origin feature-branch).
 Create a new Pull Request.
 
 
-Contact
-Your Name - sagarkota008@gmail.com
+## Contact
+Kota Sagar - sagarkota008@gmail.com
 
-Project Link: GitHub Repo
+Project Link: https://github.com/kotasagar/RailwayReservationSpringBoot
 
-vbnet
-Copy code
 
 Feel free to customize it further to match your project's specific details and style!
